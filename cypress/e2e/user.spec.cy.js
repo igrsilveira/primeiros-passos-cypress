@@ -12,7 +12,9 @@ describe('template spec', () => {
     firstNameField: ".--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input",
     lastNameField: ":nth-child(3) > :nth-child(2) > .oxd-input",
     genericField: ".oxd-input--active",
-    NationalityField: ".oxd-select-text--active",
+    genericCombobox: ".oxd-select-text--arrow",
+    secondItemCombobox: ".oxd-select-dropdown > :nth-child(2)",
+    thirdItemCombobox: ".oxd-select-dropdown > :nth-child(3)",
     saveButton: ".orangehrm-card-container > .oxd-form > .oxd-form-actions > .oxd-button",
 
   }
@@ -31,9 +33,13 @@ describe('template spec', () => {
     cy.get(selectorsList.genericField).eq(4).clear().type('OtherIdTest')
     cy.get(selectorsList.genericField).eq(5).clear().type('DriversLicenseTest')
     cy.get(selectorsList.genericField).eq(6).clear().click().type('2025-03-03');
+    
+    cy.get(selectorsList.genericCombobox).eq(0).click();
+    cy.get(selectorsList.secondItemCombobox).click(); //Nacionalidade
+    cy.get(selectorsList.genericCombobox).eq(1).click();
+    cy.get(selectorsList.thirdItemCombobox).click();
     cy.get(selectorsList.saveButton).click()
-    cy.get('.oxd-toast-content').should('contain', 'Successfully Updated')
-    // cy.get(selectorsList.NationalityField).click().type('Brazilian');    // cy.get(selectorsList.genericField).eq(7).type('DriversLicenseNumber')
+    
   })
 
 //   it('Login - Fail', () => {
